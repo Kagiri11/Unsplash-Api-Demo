@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="item"
+            type="com.jscode.bipolarfactorydemo.data.ImageData" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            app:cardCornerRadius="@dimen/margin2"
+            android:layout_marginStart="@dimen/margin2"
+            android:layout_marginEnd="@dimen/margin1"
+            android:layout_marginTop="@dimen/margin3">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:imageUrl="@{item.urls.regular}"
+            android:scaleType="center" />
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{item.description}"
+            android:layout_marginStart="@dimen/margin2"
+            android:layout_marginEnd="@dimen/margin1"
+            android:layout_marginTop="@dimen/margin1"
+            android:textSize="16sp"/>
+    </LinearLayout>
+</layout>

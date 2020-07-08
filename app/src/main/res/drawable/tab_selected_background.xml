@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <item android:drawable="@drawable/tab_unselected_background" />
+    <item android:drawable="@drawable/rounded_corner_rectangle"
+        android:top="@dimen/margin1"
+        android:bottom="@dimen/margin1"
+        android:start="@dimen/margin1"
+        android:end="@dimen/margin1" />
+</layer-list>
