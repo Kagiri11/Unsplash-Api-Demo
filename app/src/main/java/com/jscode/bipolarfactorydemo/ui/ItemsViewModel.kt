@@ -1,23 +1,16 @@
 package com.jscode.bipolarfactorydemo.ui
 
-import androidx.lifecycle.*
-import com.jscode.bipolarfactorydemo.data.ImageData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import com.jscode.bipolarfactorydemo.data.UnSplashImage
 import com.jscode.bipolarfactorydemo.repository.Repository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.flow.Flow
 
 class ItemsViewModel : ViewModel() {
-    private val _images= MutableLiveData<List<ImageData>>()
-    val images:LiveData<List<ImageData>>
-        get() = _images
-    private val repository= Repository()
-
-    init {
-        viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                _images.postValue(repository.getItemImages())
-            }
-        }
+    private val repository = Repository()
+    fun getResult(): Flow<PagingData<UnSplashImage>> {
+        return repository.getItemImages().cachedIn(viewModelScope)
     }
 }

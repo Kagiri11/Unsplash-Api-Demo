@@ -5,7 +5,7 @@
     <data>
         <variable
             name="item"
-            type="com.jscode.bipolarfactorydemo.data.ImageData" />
+            type="com.jscode.bipolarfactorydemo.data.UnSplashImage" />
     </data>
 
     <LinearLayout

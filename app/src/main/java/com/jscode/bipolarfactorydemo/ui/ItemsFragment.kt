@@ -6,12 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.jscode.bipolarfactorydemo.R
 import com.jscode.bipolarfactorydemo.adapter.ImagesAdapter
 import com.jscode.bipolarfactorydemo.databinding.FragmentItemsBinding
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class ItemsFragment : Fragment() {
     companion object {
@@ -29,16 +31,18 @@ class ItemsFragment : Fragment() {
     ): View? {
         val binding: FragmentItemsBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_items, container, false)
-        binding.lifecycleOwner=viewLifecycleOwner
-        binding.model=viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.model = viewModel
         val adapter = ImagesAdapter()
-        binding.imageList.layoutManager= GridLayoutManager(requireContext(),2)
-        binding.imageList.adapter=adapter
-        viewModel.images.observe(viewLifecycleOwner, Observer {
-            it?.let {images->
-                adapter.submitList(images)
+        binding.imageList.layoutManager = GridLayoutManager(requireContext(), 2)
+        binding.imageList.adapter = adapter
+        lifecycleScope.launch {
+            viewModel.getResult().collect {
+                if (binding.loading.visibility == View.VISIBLE) binding.loading.visibility =
+                    View.GONE
+                adapter.submitData(it)
             }
-        })
+        }
         return binding.root
     }
 }

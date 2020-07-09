@@ -2,23 +2,27 @@ package com.jscode.bipolarfactorydemo.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.jscode.bipolarfactorydemo.data.ImageData
+import com.jscode.bipolarfactorydemo.data.UnSplashImage
 import com.jscode.bipolarfactorydemo.databinding.ImageItemBinding
 
-class ImagesAdapter: ListAdapter<ImageData,ImagesAdapter.ViewHolder>(ImagesAdapterDiff()) {
-    class ViewHolder(private val binding:ImageItemBinding):RecyclerView.ViewHolder(binding.root) {
-        companion object{
-            fun from(parent: ViewGroup):ViewHolder{
-                val inflater= LayoutInflater.from(parent.context)
-                val binding=ImageItemBinding.inflate(inflater)
+class ImagesAdapter :
+    PagingDataAdapter<UnSplashImage, ImagesAdapter.ViewHolder>(ImagesAdapterDiff()) {
+
+    class ViewHolder(private val binding: ImageItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        companion object {
+            fun from(parent: ViewGroup): ViewHolder {
+                val inflater = LayoutInflater.from(parent.context)
+                val binding = ImageItemBinding.inflate(inflater)
                 return ViewHolder(binding)
             }
         }
-        fun bind(item: ImageData){
-            binding.item=item
+
+        fun bind(item: UnSplashImage?) {
+            binding.item = item
         }
     }
 
@@ -32,13 +36,13 @@ class ImagesAdapter: ListAdapter<ImageData,ImagesAdapter.ViewHolder>(ImagesAdapt
     }
 }
 
-class ImagesAdapterDiff:DiffUtil.ItemCallback<ImageData>() {
-    override fun areItemsTheSame(oldItem: ImageData, newItem: ImageData): Boolean {
-        return oldItem.id==newItem.id
+class ImagesAdapterDiff : DiffUtil.ItemCallback<UnSplashImage>() {
+    override fun areItemsTheSame(oldItem: UnSplashImage, newItem: UnSplashImage): Boolean {
+        return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: ImageData, newItem: ImageData): Boolean {
-        return newItem==oldItem
+    override fun areContentsTheSame(oldItem: UnSplashImage, newItem: UnSplashImage): Boolean {
+        return newItem == oldItem
     }
 
 }

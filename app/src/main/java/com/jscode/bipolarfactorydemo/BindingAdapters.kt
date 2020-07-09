@@ -15,6 +15,6 @@ fun goneIfNotNull(view: View, it: Any?) {
 fun bindImage(img: ImageView, url:String?){
     url?.let {
         val uri= it.toUri().buildUpon().scheme("https").build()
-        Glide.with(img.context).load(uri).into(img)
+        Glide.with(img.context).load(uri).placeholder(R.drawable.loading_animation).into(img)
     }
 }
