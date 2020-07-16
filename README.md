@@ -4,3 +4,5 @@ A simple android app to display collection of photos with pagination in tab layo
 ♦ MVVM Architecture
 ♦ Kotlin Coroutines
 ♦ Paging3
+♦ REST API- Retrofit, Moshi
+♦ Glide
