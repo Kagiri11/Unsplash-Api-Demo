@@ -1,5 +1,5 @@
 # Unsplash-Api-Demo
-A simple android app to display collection of photos with pagination in tab layout using Unsplash API.
+A basic android app to display collection of photos in tab layout using Unsplash API and implementing pagination.
 
 ♦ MVVM Architecture\
 ♦ Kotlin Coroutines\
